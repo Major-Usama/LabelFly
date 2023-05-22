@@ -8,13 +8,15 @@ import {
   Animated,
   PanResponder,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
 } from "react-native";
-import React, { useRef,useState,useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Image } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import WelcomeBox from "../../components/WelcomeBox";
-import { Platform } from "react-native";
-import { useNavigation,useFocusEffect } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,24 +24,7 @@ export default function WelcomeScreen() {
   const swipeAnim = useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
   const [panResponder, setPanResponder] = useState(null);
-  const handleSwipe = () => {
-    navigation.navigate("OnboardingScreen");
-  };
 
-  const applyFocusEffect = () => {
-    StatusBar.setBarStyle('light-content');
-    StatusBar.setBackgroundColor('transparent'); 
-  };
-
-  useFocusEffect(
-    React.useCallback(() => {
-      applyFocusEffect();
-      return () => {
-        StatusBar.setBarStyle('dark-content'); 
-        StatusBar.setBackgroundColor('#fff'); 
-      };
-    }, [])
-  );
   useEffect(() => {
     const newPanResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -67,7 +52,7 @@ export default function WelcomeScreen() {
 
     setPanResponder(newPanResponder);
 
-    const unsubscribe = navigation.addListener('beforeRemove', () => {
+    const unsubscribe = navigation.addListener("beforeRemove", () => {
       // Reset the swipe animation when leaving the screen
       Animated.spring(swipeAnim, {
         toValue: 0,
@@ -75,59 +60,96 @@ export default function WelcomeScreen() {
       }).start();
     });
 
+    // Set the initial position of swipeAnim to 0
+    swipeAnim.setValue(0);
+
     return () => {
       unsubscribe();
     };
   }, [swipeAnim, navigation]);
+
+  const handleSwipe = () => {
+    navigation.navigate("RegisterScreenName");
+  };
+
+  const applyFocusEffect = () => {
+    StatusBar.setBarStyle("light-content");
+    StatusBar.setBackgroundColor("transparent");
+    // Reset the swipe animation when the screen receives focus
+    Animated.spring(swipeAnim, {
+      toValue: 0,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      applyFocusEffect();
+      return () => {
+        StatusBar.setBarStyle("dark-content");
+        StatusBar.setBackgroundColor("#fff");
+      };
+    }, [swipeAnim])
+  );
+
   return (
-    <ImageBackground
-      source={require("../../assets/images/welcomeback.png")}
-      style={styles.container}
-    >
 
-      <View style={styles.welcomeHeader}>
-        <Image
-          style={styles.topLeftLogo}
-          source={require("../../assets/icons/labelflylofo.png")}
-        />
-        
-        <TouchableOpacity onPress={()=>navigation.navigate('LoginScreen')}> 
-        <Text style={styles.logintext}>LOG IN</Text>
-        </TouchableOpacity>
-      </View>
+        <ImageBackground source={require("../../assets/images/welcomeback.png")} style={styles.backgroundImage}>
+          <View style={styles.welcomeHeader}>
+            <Image
+              style={styles.topLeftLogo}
+              source={require("../../assets/icons/labelflylofo.png")}
+            />
+            
+            <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+              <Text style={styles.logintext}>LOG IN</Text>
+            </TouchableOpacity>
+          </View>
 
-      <View style={styles.ScreenContentContainer}>
-        <Text style={styles.tagLine}>
-          <Text style={{ ...styles.tagLine, color: "#5499F2" }}>Delivery.</Text>
-          {"\n"}
-          Like never{"\n"}
-          Before.
-        </Text>
-
-        <Text style={styles.desc}>
-          Join the millions of satisfied customers !{"\n"}
-          Slide to discover more.
-        </Text>
-
-        <WelcomeBox />
-      </View>
-    
-         {panResponder && (
-          <Animated.View
-            {...panResponder.panHandlers}
-            style={[styles.footer, { transform: [{ translateY: swipeAnim }] }]}
-          >
-            <Text style={styles.swipeText} pointerEvents="none">
-              Swipe to Sign Up
+          <View style={styles.ScreenContentContainer}>
+            <Text style={styles.tagLine}>
+              <Text style={{ ...styles.tagLine, color: "#5499F2" }}>Delivery.</Text>
+              {"\n"}
+              Like never{"\n"}
+              Before.
             </Text>
-          </Animated.View>
-        )}
-    </ImageBackground>
+
+            <Text style={styles.desc}>
+              Join the millions of satisfied customers !{"\n"}
+              Slide to discover more.
+            </Text>
+
+            <WelcomeBox />
+          </View>
+
+          {panResponder && (
+            <Animated.View
+              {...panResponder.panHandlers}
+              style={[
+                styles.footer,
+                {
+                  transform: [{ translateY: swipeAnim }],
+                },
+              ]}
+            >
+              <Text style={styles.swipeText} pointerEvents="none">
+                Swipe to Sign Up
+              </Text>
+            </Animated.View>
+          )}
+        </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: "#FFF",
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+  },
+  backgroundImage: {
     flex: 1,
   },
   welcomeHeader: {
@@ -168,11 +190,10 @@ const styles = StyleSheet.create({
     bottom: 10,
     left: 0,
     right: 0,
-     height: RFValue(100),
+    height: RFValue(100),
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "transparent",
-    
   },
   swipeText: {
     color: "#fff",

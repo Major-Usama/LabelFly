@@ -5,7 +5,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import OtpInput from '../../../components/OtpInput';
 import Button from '../../../components/Button';
 
-export default function ForgotPasswordCodeConfirmationScreen({route}) {
+export default function ForgotPasswordCodeConfirmationScreen({route,navigation}) {
     const { activeContainer } = route.params;
 
 // Timer Logic
@@ -63,6 +63,7 @@ const handleResendCode = () => {
     
     <View style={styles.buttonContainer}>
    <Button 
+   onPress={()=>navigation.navigate('CreateNewPasswordScreen')}
    title="Verify"
    />
    </View>
@@ -80,7 +81,7 @@ container:
 },
 codeOtpConatiner:
 {
-  flex:1,
+  flex:0.9,
   justifyContent:"center",
   alignItems:'center',
 

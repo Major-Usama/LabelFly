@@ -25,7 +25,7 @@ export default function ForgotPasswordScreen() {
     <View style={styles.container}>
       <ScrollView
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={false}
+      contentContainerStyle={{paddingBottom:100}}
       >
       <HeaderBack
       title="Forgot Password"

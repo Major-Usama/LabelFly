@@ -1,15 +1,9 @@
 import React, { useState } from "react";
-import {
-  TextInput,
-  View,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { TextInput, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
 
-const CustomTextInput = ({ secureTextEntry, ...rest }) => {
+const CustomTextInput = ({ secureTextEntry, value, onChangeText, ...rest }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -49,6 +43,8 @@ const CustomTextInput = ({ secureTextEntry, ...rest }) => {
         secureTextEntry={secureTextEntry && !showPassword}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        value={value}
+        onChangeText={onChangeText}
         {...rest}
       />
 
@@ -68,6 +64,8 @@ const CustomTextInput = ({ secureTextEntry, ...rest }) => {
     </View>
   );
 };
+
+// Styles...
 
 const styles = StyleSheet.create({
   container: {

@@ -6,9 +6,9 @@ import {
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import CustomTextInput from "../../../components/CustomTextInput";
 import RememberMeCheckbox from "../../../components/RememberMeCheckbox";
@@ -16,96 +16,112 @@ import Button from "../../../components/Button";
 import ContinueWithButton from "../../../components/ContinueWithButton";
 import SocialLogin from "../../../components/SocialLogin";
 
+export default function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-export default function LoginScreen({navigation}) {
+  const handleEmailChange = (text) => {
+    setEmail(text);
+  };
+  const handlePasswordChange = (text) => {
+    setPassword(text);
+  };
   return (
     <KeyboardAvoidingView
-    style={{ flex: 1 }}
-    // keyboardVerticalOffset={50}
-    // behavior={"position"}
-    behavior={Platform.OS === "ios" ? "padding" : null}
-    keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 40}
-  >
-    <ScrollView
-      style={{ flex: 1, backgroundColor: "#FCFCFF" }}
-      contentContainerStyle={{paddingBottom:100}}
-      showsVerticalScrollIndicator={false}
+      style={{ flex: 1 }}
+      // keyboardVerticalOffset={50}
+      // behavior={"position"}
+      behavior={Platform.OS === "ios" ? "padding" : null}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 40}
     >
-    <View style={styles.container}>
-      <Pressable onPress={() => navigation.goBack()}>
-        <Image
-          style={styles.arrowBack}
-          source={require("../../../assets/icons/arrow-back.png")}
-        />
-      </Pressable>
-   
+      <ScrollView
+        style={{ flex: 1, backgroundColor: "#FCFCFF" }}
+        contentContainerStyle={{ paddingBottom: 100 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.container}>
+          <Pressable onPress={() => navigation.goBack()}>
+            <Image
+              style={styles.arrowBack}
+              source={require("../../../assets/icons/arrow-back.png")}
+            />
+          </Pressable>
 
-      <Image
-        style={styles.logo}
-        source={require("../../../assets/icons/logosmall.png")}
-      />
+          <Image
+            style={styles.logo}
+            source={require("../../../assets/icons/logosmall.png")}
+          />
 
-      <View>
-        <Text style={styles.logintoAccount}>Login to Your Account</Text>
+          <View>
+            <Text style={styles.logintoAccount}>Login to Your Account</Text>
 
-        <View style={styles.inputsContainer}>
-          <CustomTextInput placeholder="Email" />
+            <View style={styles.inputsContainer}>
+              <CustomTextInput
+                value={email}
+                onChangeText={handleEmailChange}
+                placeholder="Email"
+              />
 
-          <CustomTextInput placeholder="Password" secureTextEntry />
+              <CustomTextInput
+                value={password}
+                onChangeText={handlePasswordChange}
+                placeholder="Password"
+                secureTextEntry
+              />
+            </View>
+          </View>
+
+          <View style={styles.rememberMeContainer}>
+            <RememberMeCheckbox />
+            <Text style={styles.rememberMeText}>Remember me</Text>
+          </View>
+
+          <View style={styles.loginButtonContainer}>
+            <Button onPress={() => console.log("")} title="Log In" />
+          </View>
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ForgotPasswordScreen")}
+          >
+            <Text style={styles.forgotPasswordText}>Forgot the password?</Text>
+          </TouchableOpacity>
+
+          <View>
+            <ContinueWithButton />
+          </View>
+
+          <View style={styles.SocialLoginContainer}>
+            <SocialLogin icon={require("../../../assets/icons/facebook.png")} />
+            <SocialLogin icon={require("../../../assets/icons/google.png")} />
+            <SocialLogin icon={require("../../../assets/icons/apple.png")} />
+          </View>
+
+          <Pressable>
+            <Text style={styles.footerLine}>
+              Don’t have an account?{" "}
+              <Text
+                style={{
+                  ...styles.footerLine,
+                  fontFamily: "SemiBold",
+                  color: "#0C4DA2",
+                }}
+              >
+                {" "}
+                Register
+              </Text>
+            </Text>
+          </Pressable>
         </View>
-      </View>
-
-      <View style={styles.rememberMeContainer}>
-        <RememberMeCheckbox />
-        <Text style={styles.rememberMeText}>Remember me</Text>
-      </View>
-
-      <View style={styles.loginButtonContainer}>
-        <Button onPress={() => console.log("")} title="Log In" />
-      </View>
-
-      <TouchableOpacity 
-      onPress={()=>navigation.navigate('ForgotPasswordScreen')}>
-        <Text style={styles.forgotPasswordText}>Forgot the password?</Text>
-      </TouchableOpacity>
-
-      <View>
-        <ContinueWithButton />
-      </View>
-
-      <View style={styles.SocialLoginContainer}>
-        <SocialLogin icon={require("../../../assets/icons/facebook.png")} />
-        <SocialLogin icon={require("../../../assets/icons/google.png")} />
-        <SocialLogin icon={require("../../../assets/icons/apple.png")} />
-      </View>
-     
-     <Pressable>
-      <Text style={styles.footerLine}>
-        Don’t have an account?{" "}
-        <Text
-          style={{
-            ...styles.footerLine,
-            fontFamily: "SemiBold",
-            color: "#0C4DA2",
-          }}
-        >
-          {" "}
-          Register
-        </Text>
-      </Text>
-      </Pressable>
-      
-    </View>
-    </ScrollView>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//   },
+  //   container: {
+  //     flex: 1,
+  //     backgroundColor: "#fff",
+  //   },
   arrowBack: {
     width: RFValue(25),
     height: RFValue(25),
@@ -161,8 +177,7 @@ const styles = StyleSheet.create({
     fontSize: RFValue(13),
     color: "#9E9E9E",
     fontFamily: "Regular",
-    textAlign:'center',
-    marginTop:RFValue(20)
+    textAlign: "center",
+    marginTop: RFValue(20),
   },
-  
 });
