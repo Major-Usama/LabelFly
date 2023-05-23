@@ -12,6 +12,9 @@ import RegisterDetailsScreen from "../screens/Authentications/Register/RegisterD
 import RegisterCreatePasswordScreen from "../screens/Authentications/Register/RegisterCreatePasswordScreen";
 import RegisterUploadPhotoScreen from "../screens/Authentications/Register/RegisterUploadPhotoScreen";
 import HomeScreen from "../screens/TabScreens/HomeScreen";
+import Tabs from "./Tabs";
+import PlanYourDeliveryScreen from "../screens/PlanTheDelivery/PlanYourDeliveryScreen";
+import PlanMapScreen from "../screens/PlanTheDelivery/PlanMapScreen";
 
 const Stack = createNativeStackNavigator();
 function Navigation() {
@@ -34,8 +37,14 @@ function Navigation() {
         <Stack.Screen name="RegisterUploadPhotoScreen" component={RegisterUploadPhotoScreen} />
 
         {/* Tab screens */}
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-
+        {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
+        <Stack.Screen name="tabs" component={Tabs} />
+        
+        {/* Plan The delivery */}
+        <Stack.Screen name="PlanYourDeliveryScreen" component={PlanYourDeliveryScreen} />
+        <Stack.Screen name="PlanMapScreen" component={PlanMapScreen} />
+        
+   
    
       
       </Stack.Navigator>

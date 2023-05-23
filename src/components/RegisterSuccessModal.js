@@ -34,7 +34,7 @@ const RegisterSuccessModal = ({ isVisible, closeModal }) => {
 
       // Wait for 2 seconds and navigate to the desired screen
       const timer = setTimeout(() => {
-        navigation.navigate("HomeScreen");
+        navigation.navigate("tabs");
       }, 2000);
 
       return () => {
@@ -51,7 +51,6 @@ const RegisterSuccessModal = ({ isVisible, closeModal }) => {
       animation && animation.start();
     }
   }, [isFocused, closeModal, animation]);
-
 
   const rotateInterpolation = rotation.interpolate({
     inputRange: [0, 1],
@@ -80,7 +79,10 @@ const RegisterSuccessModal = ({ isVisible, closeModal }) => {
         </Text>
 
         <Animated.Image
-          style={[styles.loader, { transform: [{ rotate: rotateInterpolation }] }]}
+          style={[
+            styles.loader,
+            { transform: [{ rotate: rotateInterpolation }] },
+          ]}
           source={require("../assets/icons/loader.png")}
         />
       </View>

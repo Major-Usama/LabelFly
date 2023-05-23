@@ -16,7 +16,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import * as ImagePicker from "expo-image-picker";
 import { Camera } from "expo-camera";
 const { width } = Dimensions.get("window");
-import { ImageManipulator } from "expo-image-manipulator";
+
 import RegisterSuccessModal from "../../../components/RegisterSuccessModal";
 export default function RegisterUploadPhotoScreen() {
   const [cameraPermission, setCameraPermission] = useState(null);
