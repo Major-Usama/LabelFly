@@ -27,7 +27,6 @@ export default function CreateNewPasswordScreen({navigation}) {
       />
 
       <KeyboardAvoidingView
-      
         style={styles.flexContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : RFValue(-90)}

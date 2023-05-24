@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, View, Dimensions, Text } from 'react-native';
 import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
 import { RFValue } from 'react-native-responsive-fontsize';
 import MapBottomSheet from '../../components/MapBottomSheet';
-
+import { Ionicons } from '@expo/vector-icons';
+import Button from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 25.2048; // Dubai Mall latitude
@@ -22,6 +24,19 @@ const CustomMarker = ({ title }) => {
 };
 
 const PlanMapScreen = () => {
+
+  const [activeContainer, setActiveContainer] = useState('');
+  const navigation = useNavigation();
+  const handleContainerPress = (value) => {
+    setActiveContainer(value);
+  };
+
+  const handleNextScreen = () => {
+    if (activeContainer!=='') {
+      navigation.navigate('SchedulePickupScreen');
+    }
+  };
+
   // Your address coordinates (JW Marriott Marquis Hotel Dubai)
   const addressLatitude = 25.1864;
   const addressLongitude = 55.2635;
@@ -83,7 +98,26 @@ const PlanMapScreen = () => {
           geodesic
         />
       </MapView>
-      <MapBottomSheet  />
+      <MapBottomSheet
+      handleNextScreen={handleNextScreen}
+      handleContainerPress={handleContainerPress}
+      setActiveContainer={setActiveContainer}
+      activeContainer={activeContainer}
+
+      />
+      
+      <View style={styles.backicon}>
+      <Ionicons
+      onPress={()=>navigation.goBack()}
+      name="arrow-back-circle" size={50} color="#0C4DA2" />
+      </View>
+      
+      <View style={styles.btnContainer}>
+      <Button
+      onPress={handleNextScreen}
+      title={`Select ${activeContainer}`}
+      />
+      </View>
     </View>
   );
 };
@@ -110,6 +144,25 @@ const styles = StyleSheet.create({
     fontFamily:'Regular',
     fontSize:RFValue(12)
   },
+  backicon:
+  {
+    zIndex:99999,
+    position:"absolute",
+    marginTop:RFValue(50),
+    marginLeft:RFValue(20)
+  },
+  btnContainer:
+{
+  position:"absolute",
+  backgroundColor:'#fff',
+  width:width,
+  height:RFValue(95),
+  bottom:0,
+  right:0,
+  left:0,
+  justifyContent:"center"
+  
+},
 });
 
 export default PlanMapScreen;

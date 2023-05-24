@@ -15,6 +15,9 @@ import HomeScreen from "../screens/TabScreens/HomeScreen";
 import Tabs from "./Tabs";
 import PlanYourDeliveryScreen from "../screens/PlanTheDelivery/PlanYourDeliveryScreen";
 import PlanMapScreen from "../screens/PlanTheDelivery/PlanMapScreen";
+import SchedulePickupScreen from "../screens/PlanTheDelivery/SchedulePickupScreen";
+import ChoosePaymentMethodScreen from "../screens/PlanTheDelivery/ChoosePaymentMethodScreen";
+import MapTrackingScreen from "../screens/Tracking Package/MapTrackingScreen";
 
 const Stack = createNativeStackNavigator();
 function Navigation() {
@@ -43,10 +46,12 @@ function Navigation() {
         {/* Plan The delivery */}
         <Stack.Screen name="PlanYourDeliveryScreen" component={PlanYourDeliveryScreen} />
         <Stack.Screen name="PlanMapScreen" component={PlanMapScreen} />
+        <Stack.Screen name="SchedulePickupScreen" component={SchedulePickupScreen} />
+        <Stack.Screen name="ChoosePaymentMethodScreen" component={ChoosePaymentMethodScreen} />
         
-   
-   
-      
+        {/* Tracking */}
+        <Stack.Screen name="MapTrackingScreen" component={MapTrackingScreen} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

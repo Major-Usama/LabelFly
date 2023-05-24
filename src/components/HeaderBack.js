@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
   headerTitle: {
     color: "#212121",
     fontFamily: "Bold",
-    fontSize: RFValue(22),
+    fontSize: RFValue(21),
   },
 });
