@@ -22,7 +22,7 @@ const CustomMarker = ({ title }) => {
   );
 };
 
-const ActivityMap = () => {
+const ActivityMap = (props) => {
   const navigation = useNavigation();
 
 //   Your Adresss
@@ -44,7 +44,9 @@ const ActivityMap = () => {
     <View style={styles.container}>
       <MapView
         provider={PROVIDER_GOOGLE}
-        style={styles.map}
+        style={{...styles.map,borderRadius:props.borderRadius,
+        height:props.height
+        }}
         region={{
           latitude: LATITUDE,
           longitude: LONGITUDE,
@@ -77,9 +79,9 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: 160,
+    // height: 160,
     alignSelf: 'center',
-    borderRadius:16,
+    // borderRadius:16,
     overflow:"hidden"
    
   },

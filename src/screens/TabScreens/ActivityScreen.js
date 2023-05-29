@@ -6,15 +6,22 @@ import {
   TouchableOpacity,
   Dimensions,
   Platform,
+  ScrollView
 } from "react-native";
 import React from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import ActivityMap from "../../components/Activity/ActivityMap";
 
+import FlatListComponentActivityCard from "../../components/Activity/ActivityDeliveryCard";
+
 const { width } = Dimensions.get("window");
 export default function ActivityScreen() {
   return (
     <View style={styles.container}>
+     <ScrollView
+     showsVerticalScrollIndicator={false}
+     contentContainerStyle={{paddingBottom:50}}
+     >
       <View style={styles.activityHeaderContainer}>
         <Image
           style={styles.logo}
@@ -64,7 +71,10 @@ export default function ActivityScreen() {
           </TouchableOpacity>
         </View>
       <View style={styles.pastMapContainer}>
-      <ActivityMap />
+      <ActivityMap 
+      borderRadius={16}
+      height={RFValue(150)}
+      />
 
       <Text style={styles.yourAddressText}>Your address{'\n'}Dubai mall</Text>
       
@@ -75,6 +85,11 @@ export default function ActivityScreen() {
         
         </View>
       </View>
+
+      <View>
+        <FlatListComponentActivityCard />
+      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -184,7 +199,7 @@ const styles = StyleSheet.create({
       height: 1,
     },
     shadowOpacity: 0.15,
-    shadowRadius: 5.41,
+    shadowRadius: 4,
     
     elevation: 2,
     borderRadius:16,

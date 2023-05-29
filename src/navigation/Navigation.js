@@ -11,13 +11,13 @@ import RegisterScreenName from "../screens/Authentications/Register/RegisterScre
 import RegisterDetailsScreen from "../screens/Authentications/Register/RegisterDetailsScreen";
 import RegisterCreatePasswordScreen from "../screens/Authentications/Register/RegisterCreatePasswordScreen";
 import RegisterUploadPhotoScreen from "../screens/Authentications/Register/RegisterUploadPhotoScreen";
-import HomeScreen from "../screens/TabScreens/HomeScreen";
 import Tabs from "./Tabs";
 import PlanYourDeliveryScreen from "../screens/PlanTheDelivery/PlanYourDeliveryScreen";
 import PlanMapScreen from "../screens/PlanTheDelivery/PlanMapScreen";
 import SchedulePickupScreen from "../screens/PlanTheDelivery/SchedulePickupScreen";
 import ChoosePaymentMethodScreen from "../screens/PlanTheDelivery/ChoosePaymentMethodScreen";
 import MapTrackingScreen from "../screens/Tracking Package/MapTrackingScreen";
+import ActivityDeliveryDetails from "../screens/Activity/ActivityDeliveryDetails";
 
 const Stack = createNativeStackNavigator();
 function Navigation() {
@@ -51,6 +51,9 @@ function Navigation() {
         
         {/* Tracking */}
         <Stack.Screen name="MapTrackingScreen" component={MapTrackingScreen} />
+        
+        {/* Activity */}
+        <Stack.Screen name="ActivityDeliveryDetails" component={ActivityDeliveryDetails} />
         
       </Stack.Navigator>
     </NavigationContainer>
