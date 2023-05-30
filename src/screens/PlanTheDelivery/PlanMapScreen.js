@@ -1,16 +1,18 @@
-import React,{useState} from 'react';
-import { StyleSheet, View, Dimensions, Text } from 'react-native';
+import React,{useState,useMemo} from 'react';
+import { StyleSheet, View, Dimensions, Text,Image } from 'react-native';
 import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from 'react-native-maps';
 import { RFValue } from 'react-native-responsive-fontsize';
 import MapBottomSheet from '../../components/MapBottomSheet';
 import { Ionicons } from '@expo/vector-icons';
 import Button from '../../components/Button';
 import { useNavigation } from '@react-navigation/native';
+
+
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 25.2048; // Dubai Mall latitude
 const LONGITUDE = 55.2708; // Dubai Mall longitude
-const LATITUDE_DELTA = 0.1;
+const LATITUDE_DELTA = 0.07;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const CustomMarker = ({ title }) => {
@@ -22,6 +24,7 @@ const CustomMarker = ({ title }) => {
     </View>
   );
 };
+
 
 const PlanMapScreen = () => {
 
@@ -37,9 +40,9 @@ const PlanMapScreen = () => {
     }
   };
 
-  // Your address coordinates (JW Marriott Marquis Hotel Dubai)
-  const addressLatitude = 25.1864;
-  const addressLongitude = 55.2635;
+
+  const addressLatitude = 25.2201;
+  const addressLongitude = 55.2563;
 
   // Destination (Dubai Mall) coordinates
   const destinationLatitude = 25.2048;
@@ -81,6 +84,7 @@ const PlanMapScreen = () => {
         >
           <CustomMarker title="Your Address" />
         </Marker>
+
 
         {/* First Polyline */}
         <Polyline
@@ -128,10 +132,13 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+    position:'absolute',
+    bottom:RFValue(300),
   },
   customMarkerContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+ 
   },
   customMarker: {
     backgroundColor: '#0C4DA2',
@@ -162,6 +169,11 @@ const styles = StyleSheet.create({
   left:0,
   justifyContent:"center"
   
+},
+bikeMarker: {
+  width: 50,
+  height: 50,
+  resizeMode:'contain'
 },
 });
 
