@@ -18,6 +18,8 @@ import SchedulePickupScreen from "../screens/PlanTheDelivery/SchedulePickupScree
 import ChoosePaymentMethodScreen from "../screens/PlanTheDelivery/ChoosePaymentMethodScreen";
 import MapTrackingScreen from "../screens/Tracking Package/MapTrackingScreen";
 import ActivityDeliveryDetails from "../screens/Activity/ActivityDeliveryDetails";
+import DriverChatScreen from "../screens/Tracking Package/DriverChatScreen";
+import ScheduleScreen from "../screens/Schedule/ScheduleScreen";
 
 const Stack = createNativeStackNavigator();
 function Navigation() {
@@ -51,9 +53,13 @@ function Navigation() {
         
         {/* Tracking */}
         <Stack.Screen name="MapTrackingScreen" component={MapTrackingScreen} />
+        <Stack.Screen name="DriverChatScreen" component={DriverChatScreen} />
         
         {/* Activity */}
         <Stack.Screen name="ActivityDeliveryDetails" component={ActivityDeliveryDetails} />
+        
+        {/* Schedule Screen */}
+        <Stack.Screen name="ScheduleScreen" component={ScheduleScreen} />
         
       </Stack.Navigator>
     </NavigationContainer>

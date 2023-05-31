@@ -1,46 +1,56 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Image } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
+import { useNavigation } from "@react-navigation/native";
 export default function DisplayContainer() {
+  const navigation= useNavigation('')
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.individualItemContainer}>
+      <TouchableOpacity 
+      onPress={()=>navigation.navigate('PlanYourDeliveryScreen')}
+      style={styles.individualItemContainer}>
         <Image
           style={styles.icon}
           source={require("../assets/icons/Homeicons/sendp.png")}
         />
 
         <Text style={styles.title}>Send{"\n"}package</Text>
-      </View>
+      </TouchableOpacity>
 
-      <View style={styles.individualItemContainer}>
+      <TouchableOpacity 
+      onPress={()=>navigation.navigate('ScheduleScreen')}
+      style={styles.individualItemContainer}>
         <Image
           style={styles.icon}
           source={require("../assets/icons/Homeicons/schedule.png")}
         />
 
         <Text style={styles.title}>Schedule</Text>
-      </View>
+     </TouchableOpacity>
 
-      <View style={styles.individualItemContainer}>
+      <TouchableOpacity
+       onPress={()=>navigation.navigate('MapTrackingScreen')}
+      style={styles.individualItemContainer}>
         <Image
           style={styles.icon}
           source={require("../assets/icons/Homeicons/track.png")}
         />
 
         <Text style={styles.title}>Track</Text>
-      </View>
+      </TouchableOpacity>
 
-      <View style={styles.individualItemContainer}>
+      <TouchableOpacity
+        onPress={()=>navigation.navigate('')}
+      style={styles.individualItemContainer}>
         <Image
           style={styles.icon}
           source={require("../assets/icons/Homeicons/history.png")}
         />
 
         <Text style={styles.title}>History</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
