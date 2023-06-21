@@ -18,7 +18,7 @@ import { Camera } from "expo-camera";
 const { width } = Dimensions.get("window");
 
 import RegisterSuccessModal from "../../../components/RegisterSuccessModal";
-export default function RegisterUploadPhotoScreen() {
+export default function RegisterUploadPhotoScreen({navigation}) {
   const [cameraPermission, setCameraPermission] = useState(null);
   const [openCamera, setOpenCamera] = useState(false);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
@@ -136,7 +136,7 @@ export default function RegisterUploadPhotoScreen() {
           {!image && (
             <TouchableOpacity
               style={styles.selectFileContainer}
-              onPress={handleSelectFile}
+              // onPress={handleSelectFile}
             >
               <Image
                 style={styles.selectFileImage}
@@ -179,7 +179,9 @@ export default function RegisterUploadPhotoScreen() {
 
         <View style={styles.footerContainer}>
           <View style={styles.nextButtonContainer}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={()=>navigation.navigate('tabs')}
+            >
               <Text style={styles.skipText}>SKIP</Text>
             </TouchableOpacity>
 

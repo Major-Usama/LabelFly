@@ -1,14 +1,23 @@
-import { Dimensions, Image, StyleSheet, Text, View, KeyboardAvoidingView, ScrollView, Platform } from 'react-native'
-import React, { useState } from 'react'
-import HeaderBack from '../../../components/HeaderBack'
-import { RFValue } from 'react-native-responsive-fontsize'
-import CustomTextInput from '../../../components/CustomTextInput'
-import RememberMeCheckbox from '../../../components/RememberMeCheckbox'
-import Button from '../../../components/Button'
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
+} from "react-native";
+import React, { useState } from "react";
+import HeaderBack from "../../../components/HeaderBack";
+import { RFValue } from "react-native-responsive-fontsize";
+import CustomTextInput from "../../../components/CustomTextInput";
+import RememberMeCheckbox from "../../../components/RememberMeCheckbox";
+import Button from "../../../components/Button";
 
-const { width, height } = Dimensions.get('window')
+const { width, height } = Dimensions.get("window");
 
-export default function CreateNewPasswordScreen({navigation}) {
+export default function CreateNewPasswordScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -22,14 +31,12 @@ export default function CreateNewPasswordScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <HeaderBack
-        title="Create New Password"
-      />
+      <HeaderBack title="Create New Password" />
 
       <KeyboardAvoidingView
         style={styles.flexContainer}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : RFValue(-90)}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : RFValue(-90)}
       >
         <ScrollView
           style={styles.scrollContainer}
@@ -39,12 +46,14 @@ export default function CreateNewPasswordScreen({navigation}) {
           <View style={styles.topImageContainer}>
             <Image
               style={styles.forgotBackImage}
-              source={require('../../../assets/images/createpasswordback.png')}
+              source={require("../../../assets/images/createpasswordback.png")}
             />
           </View>
 
           <View style={styles.createYourPasswordContainer}>
-            <Text style={styles.createYourPasswordtext}>Create Your New Password</Text>
+            <Text style={styles.createYourPasswordtext}>
+              Create Your New Password
+            </Text>
 
             <View style={styles.inputsContainer}>
               <CustomTextInput
@@ -62,28 +71,27 @@ export default function CreateNewPasswordScreen({navigation}) {
             </View>
 
             <View style={styles.rememberMeContainer}>
-            <RememberMeCheckbox />
-            <Text style={styles.rememberMeText}>Remember me</Text>
+              <RememberMeCheckbox />
+              <Text style={styles.rememberMeText}>Remember me</Text>
+            </View>
           </View>
-          </View>
-
         </ScrollView>
 
         <View style={styles.footerButtonContainer}>
           <Button
-          onPress={()=>navigation.navigate('LoginScreen')}
+            onPress={() => navigation.navigate("LoginScreen")}
             title="Continue"
           />
         </View>
       </KeyboardAvoidingView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FCFCFF',
+    backgroundColor: "#FCFCFF",
   },
   flexContainer: {
     flex: 1,
@@ -101,8 +109,8 @@ const styles = StyleSheet.create({
   forgotBackImage: {
     width: width - 58,
     height: height / 4,
-    resizeMode: 'contain',
-    alignSelf: 'center',
+    resizeMode: "contain",
+    alignSelf: "center",
   },
   createYourPasswordContainer: {
     flex: 0.6,
@@ -110,8 +118,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: RFValue(20),
   },
   createYourPasswordtext: {
-    color: '#212121',
-    fontFamily: 'Medium',
+    color: "#212121",
+    fontFamily: "Medium",
     fontSize: RFValue(16),
     paddingLeft: RFValue(20),
     paddingBottom: RFValue(20),
@@ -120,8 +128,8 @@ const styles = StyleSheet.create({
     marginBottom: RFValue(20),
   },
   footerButtonContainer: {
-    position: 'absolute',
-    bottom: Platform.OS === 'ios' ? RFValue(30) : RFValue(30),
+    position: "absolute",
+    bottom: Platform.OS === "ios" ? RFValue(30) : RFValue(30),
     left: 0,
     right: 0,
     paddingHorizontal: RFValue(20),

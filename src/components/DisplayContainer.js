@@ -42,7 +42,7 @@ export default function DisplayContainer() {
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={()=>navigation.navigate('')}
+        onPress={()=>navigation.navigate('activity')}
       style={styles.individualItemContainer}>
         <Image
           style={styles.icon}

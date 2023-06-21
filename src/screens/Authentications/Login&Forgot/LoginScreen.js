@@ -77,7 +77,7 @@ export default function LoginScreen({ navigation }) {
           </View>
 
           <View style={styles.loginButtonContainer}>
-            <Button onPress={() => console.log("")} title="Log In" />
+            <Button onPress={() => navigation.navigate('tabs')} title="Log In" />
           </View>
 
           <TouchableOpacity
@@ -96,7 +96,9 @@ export default function LoginScreen({ navigation }) {
             <SocialLogin icon={require("../../../assets/icons/apple.png")} />
           </View>
 
-          <Pressable>
+          <Pressable
+          onPress={()=>navigation.navigate('RegisterScreenName')}
+          >
             <Text style={styles.footerLine}>
               Don’t have an account?{" "}
               <Text

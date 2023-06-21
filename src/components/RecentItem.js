@@ -1,11 +1,14 @@
 import React from "react";
 import { View, StyleSheet, Image, Text,TouchableOpacity } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
-;
 
+import { useNavigation } from "@react-navigation/native";
 const RecentItem = (props) => {
+  const navigation= useNavigation()
   return (
-    <TouchableOpacity activeOpacity={0.6} style={styles.container}>
+    <TouchableOpacity
+    onPress={()=>navigation.navigate('PlanMapScreen')}
+    activeOpacity={0.6} style={styles.container}>
       <Image
         style={styles.image}
         source={require("../assets/icons/location.png")}

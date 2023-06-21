@@ -94,7 +94,7 @@ export default function PlanYourDeliveryScreen() {
             <Text style={styles.savedPlacesText}>Saved places</Text>
           </View>
 
-          <Entypo name="chevron-thin-right" size={28} color="#0C4DA2" />
+          <Entypo name="chevron-thin-right" size={24} color="#0C4DA2" />
         </TouchableOpacity>
 
         <View style={styles.seprator} />

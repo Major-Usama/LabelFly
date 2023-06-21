@@ -1,29 +1,110 @@
-import { StyleSheet, Text, View,Image } from 'react-native'
-import React from 'react'
-import { RFValue } from 'react-native-responsive-fontsize'
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  Dimensions,
+  ScrollView,
+} from "react-native";
+import React from "react";
+import { RFValue } from "react-native-responsive-fontsize";
+import ProfileItem from "../../components/Profile/ProfileItem";
 
-export default function AccountScreen() {
+const { width } = Dimensions.get("window").width;
+
+export default function AccountScreen({ navigation }) {
   return (
     <View style={styles.container}>
-     <View style={styles.activityHeaderContainer}>
-        <Image
-          style={styles.logo}
-          source={require("../../assets/icons/logosmall.png")}
-        />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 50 }}
+      >
+        <View style={styles.activityHeaderContainer}>
+          <Image
+            style={styles.logo}
+            source={require("../../assets/icons/logosmall.png")}
+          />
 
-        <Text style={styles.activityText}>Activity</Text>
-      </View>
+          <Text style={styles.activityText}>Account</Text>
+        </View>
 
+        <View style={styles.profileDetailsContainer}>
+          <TouchableOpacity activeOpacity={0.8}>
+            <ImageBackground
+              style={styles.profileImage}
+              source={require("../../assets/icons/Activity/activityprofile.png")}
+            >
+              <Image
+                style={styles.editIcon}
+                source={require("../../assets/icons/Profile/editaccount.png")}
+              />
+            </ImageBackground>
+          </TouchableOpacity>
+
+          <Text style={styles.fullNameText}>Full Name</Text>
+          <Text style={styles.profileNumber}>+215454856131</Text>
+        </View>
+
+        <View style={styles.seprator} />
+
+        <View style={styles.profileItemMainContainer}>
+          <ProfileItem
+            icon={require("../../assets/icons/Profile/accountdetails.png")}
+            title="Account Details"
+            onPress={() => navigation.navigate("AccountDetailScreen")}
+          />
+          <ProfileItem
+            icon={require("../../assets/icons/Profile/addressbook.png")}
+            title="Address Book"
+            onPress={() => navigation.navigate("AddressBookScreen")}
+          />
+
+          <ProfileItem
+            icon={require("../../assets/icons/Profile/paymentmethods.png")}
+            title="Payment Methods"
+            onPress={() => navigation.navigate("PaymentMethodProfileScreen")}
+          />
+
+          <ProfileItem
+            icon={require("../../assets/icons/Profile/language.png")}
+            title="Language"
+            subtitle="English (US)"
+            onPress={() => navigation.navigate("LanguageSelectionScreen")}
+          />
+
+          <ProfileItem
+            icon={require("../../assets/icons/Profile/notification.png")}
+            title="Notification Settings"
+            onPress={() => navigation.navigate("NotificationScreen")}
+          />
+          <ProfileItem
+            icon={require("../../assets/icons/Profile/helpcenter.png")}
+            title="Help Center"
+            onPress={() => navigation.navigate("HelpCenterScreen")}
+          />
+          <ProfileItem
+            icon={require("../../assets/icons/Profile/privacypolicy.png")}
+            title="Privacy Policy"
+            onPress={() => navigation.navigate("PrivacyPolicyScreen")}
+          />
+          <ProfileItem
+            icon={require("../../assets/icons/Profile/logout.png")}
+            title="Logout"
+            onPress={() => navigation.navigate("LoginScreen")}
+            isLastItem
+          />
+        </View>
+      </ScrollView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-
-  container:
-  {
-    flex:1,
-    backgroundColor:'#fff',
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
   },
   activityHeaderContainer: {
     flexDirection: "row",
@@ -32,7 +113,7 @@ const styles = StyleSheet.create({
     marginTop: RFValue(54),
   },
   logo: {
-    width:RFValue(28), 
+    width: RFValue(28),
     height: RFValue(28),
     marginRight: RFValue(14),
   },
@@ -41,4 +122,43 @@ const styles = StyleSheet.create({
     color: "#212121",
     fontFamily: "Bold",
   },
-})
+  profileImage: {
+    width: RFValue(100),
+    height: RFValue(100),
+    alignSelf: "center",
+  },
+  editIcon: {
+    width: RFValue(24),
+    height: RFValue(24),
+    position: "absolute",
+    zIndex: 9999,
+    bottom: 0,
+    right: 2,
+  },
+  profileDetailsContainer: {
+    marginTop: RFValue(22),
+  },
+  fullNameText: {
+    color: "#212121",
+    fontSize: RFValue(20),
+    fontFamily: "Bold",
+    textAlign: "center",
+    marginTop: 12,
+  },
+  profileNumber: {
+    color: "#212121",
+    fontSize: RFValue(12),
+    fontFamily: "Bold",
+    textAlign: "center",
+    marginTop: 4,
+  },
+  seprator: {
+    width: width,
+    height: 8,
+    backgroundColor: "#F5F5F5",
+    marginTop: RFValue(20),
+  },
+  profileItemMainContainer: {
+    marginTop: RFValue(22),
+  },
+});

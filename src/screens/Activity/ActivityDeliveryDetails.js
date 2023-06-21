@@ -133,7 +133,7 @@ export default function ActivityDeliveryDetails() {
         style={styles.seprator}
         />
   </ScrollView>
-        <View style={styles.footerButtonContainer}>
+        {/* <View style={styles.footerButtonContainer}>
          
          <Button
          title="Cancel Delivery"
@@ -147,7 +147,7 @@ export default function ActivityDeliveryDetails() {
          tcolor="#35383F"
          />
 
-        </View>
+        </View> */}
     </View>
   );
 }
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     color: "#212121",
     fontFamily: "Bold",
     fontSize: RFValue(20),
-    marginTop: RFValue(16),
+    marginTop: RFValue(50),
     marginLeft: RFValue(20),
   },
   priceContainer: {

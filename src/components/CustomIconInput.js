@@ -39,6 +39,7 @@ const CustomIconInput = ({ icon, value, onChangeText, ...rest }) => {
         value={value}
         returnKeyType="done"
         onChangeText={onChangeText}
+        // placeholderTextColor={"#9E9E9E"}
         {...rest}
       />
     </View>
@@ -69,7 +70,8 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     fontSize: RFValue(13),
-    color:'#9E9E9E'
+    color:"#212121",
+    fontFamily:'SemiBold'
   },
 });
 

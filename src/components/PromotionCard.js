@@ -1,12 +1,17 @@
 import { Dimensions, StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import { RFValue } from "react-native-responsive-fontsize";
-
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 const { width } = Dimensions.get("window");
 
 export default function PromotionCard(props) {
+  const navigation=useNavigation()
   return (
-    <View style={{ ...styles.cardMainContainer, marginRight: props.margin }}>
+    <TouchableOpacity
+    activeOpacity={0.8}
+    onPress={()=>navigation.navigate('PromotionScreen')}
+    style={{ ...styles.cardMainContainer, marginRight: props.margin }}>
       <Image
         style={{
           ...styles.promotionImage,
@@ -27,7 +32,7 @@ export default function PromotionCard(props) {
 
         <Text style={styles.desc}>Know more about our Ramadan promo</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

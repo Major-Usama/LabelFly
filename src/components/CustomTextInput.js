@@ -45,6 +45,7 @@ const CustomTextInput = ({ secureTextEntry, value, onChangeText, ...rest }) => {
         onBlur={handleBlur}
         returnKeyType="done"
         value={value}
+        // placeholderTextColor={"#9E9E9E"}
         onChangeText={onChangeText}
         {...rest}
       />
@@ -100,6 +101,8 @@ const styles = StyleSheet.create({
     flex: 1,
     height: "100%",
     fontSize: 16,
+    fontFamily:'SemiBold',
+    color:'#212121'
   },
 });
 

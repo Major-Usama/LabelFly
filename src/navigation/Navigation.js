@@ -20,6 +20,16 @@ import MapTrackingScreen from "../screens/Tracking Package/MapTrackingScreen";
 import ActivityDeliveryDetails from "../screens/Activity/ActivityDeliveryDetails";
 import DriverChatScreen from "../screens/Tracking Package/DriverChatScreen";
 import ScheduleScreen from "../screens/Schedule/ScheduleScreen";
+import PromotionScreen from "../screens/TabScreens/PromotionScreen";
+import AccountDetailScreen from "../screens/Profile/AccountDetailScreen";
+import AddressBookScreen from "../screens/Profile/AddressBookScreen";
+import PaymentMethodProfileScreen from "../screens/Profile/PaymentMethodProfileScreen";
+import AddnewCardScreen from "../screens/Profile/AddnewCardScreen";
+import LanguageSelectionScreen from "../screens/Profile/LanguageSelectionScreen";
+import NotificationScreen from "../screens/TabScreens/NotificationScreen";
+import HelpCenterScreen from "../screens/TabScreens/HelpCenterScreen";
+import HeaderBack from "../components/HeaderBack";
+import PrivacyPolicyScreen from "../screens/Profile/PrivacyPolicyScreen";
 
 const Stack = createNativeStackNavigator();
 function Navigation() {
@@ -44,6 +54,9 @@ function Navigation() {
         {/* Tab screens */}
         {/* <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
         <Stack.Screen name="tabs" component={Tabs} />
+
+        {/* Promotions */}
+        <Stack.Screen name="PromotionScreen" component={PromotionScreen} />
         
         {/* Plan The delivery */}
         <Stack.Screen name="PlanYourDeliveryScreen" component={PlanYourDeliveryScreen} />
@@ -60,6 +73,16 @@ function Navigation() {
         
         {/* Schedule Screen */}
         <Stack.Screen name="ScheduleScreen" component={ScheduleScreen} />
+        
+        {/* Profile  */}
+        <Stack.Screen name="AccountDetailScreen" component={AccountDetailScreen} />
+        <Stack.Screen name="AddressBookScreen" component={AddressBookScreen} />
+        <Stack.Screen name="PaymentMethodProfileScreen" component={PaymentMethodProfileScreen} />
+        <Stack.Screen name="AddnewCardScreen" component={AddnewCardScreen} />
+        <Stack.Screen name="LanguageSelectionScreen" component={LanguageSelectionScreen} />
+        <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
+        <Stack.Screen name="HelpCenterScreen" component={HelpCenterScreen} />
+        <Stack.Screen name="PrivacyPolicyScreen" component={PrivacyPolicyScreen} />
         
       </Stack.Navigator>
     </NavigationContainer>

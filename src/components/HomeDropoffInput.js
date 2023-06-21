@@ -13,6 +13,8 @@ import { Entypo, AntDesign } from "@expo/vector-icons";
 import Modal from "react-native-modal";
 import { RFValue } from "react-native-responsive-fontsize";
 
+import { useNavigation } from "@react-navigation/native";
+
 const { width } = Dimensions.get("window");
 const HomeDropoffInput = () => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -23,9 +25,16 @@ const HomeDropoffInput = () => {
     setModalVisible(!isModalVisible);
   };
 
+  const navigation = useNavigation();
+
   const handleSelect = (value) => {
     setSelectedValue(value);
     toggleModal();
+
+    if (value === "Schedule") {
+      navigation.navigate("ScheduleScreen");
+      setSelectedValue("Now")
+    }
   };
 
   return (
@@ -54,17 +63,16 @@ const HomeDropoffInput = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.modalOption}
-            onPress={() => handleSelect("Away")}
+            onPress={() => handleSelect("Schedule")}
           >
             <AntDesign name="clockcircle" size={16} color="#212121" />
-            <Text style={styles.modalOptionText}>Away</Text>
+            <Text style={styles.modalOptionText}>Schedule</Text>
           </TouchableOpacity>
         </View>
       </Modal>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     height: 65,

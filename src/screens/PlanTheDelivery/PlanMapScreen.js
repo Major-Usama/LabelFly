@@ -113,7 +113,7 @@ const PlanMapScreen = () => {
       <View style={styles.backicon}>
       <Ionicons
       onPress={()=>navigation.goBack()}
-      name="arrow-back-circle" size={50} color="#0C4DA2" />
+      name="arrow-back-circle" size={35} color="#0C4DA2" />
       </View>
       
       <View style={styles.btnContainer}>

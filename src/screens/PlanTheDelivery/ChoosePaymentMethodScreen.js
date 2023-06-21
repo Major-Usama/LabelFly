@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View,Dimensions,TouchableOpacity,Image,Platform} from "react-native";
+import { StyleSheet, Text, View,Dimensions,TouchableOpacity,Image,Platform,ScrollView} from "react-native";
 import React,{useState} from "react";
 import HeaderBack from "../../components/HeaderBack";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Ionicons } from '@expo/vector-icons';
 import Button from "../../components/Button";
 import TrackPackageModal from "../../components/TrackPackageModal";
+
 const {width}= Dimensions.get('window')
 
 const PaymentMethodContainer = ({ name, selected, onPress,icon }) => {
@@ -53,8 +54,14 @@ export default function ChoosePaymentMethodScreen() {
       <Text style={styles.fillinfoText}>
       Select the payment method you want to use.
       </Text>
-
       <View style={styles.seprator} />
+      <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{paddingBottom:100}}
+      >
+      
+
+   
 
   
       <PaymentMethodContainer
@@ -89,6 +96,7 @@ export default function ChoosePaymentMethodScreen() {
         <Text style={styles.addButtonLabel}>Add New Card</Text>
       </TouchableOpacity>
 
+      </ScrollView>
       <View style={styles.footerButtonContainer}>
           <Button
             onPress={openModal}
